@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Cabin+Sketch&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Cabin+Sketch&family=Fredericka+the+Great&family=Nanum+Pen+Script&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+$queue-list-item-background: linear-gradient(
+  110deg,
+  rgba(255, 255, 245, 1),
+  rgba(246, 235, 224, 1),
+  rgba(255, 255, 245, 1)
+);
+$queue-list-item-border: black;
+$animation-delay: 0.12s;
+$animation-delay-increment: 0.13s;
+
+.queue-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  border: 2px solid $queue-list-item-border;
+  background-color: $queue-list-item-background;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 8px;
+  font-size: 2rem;
+  height: 100px;
+  font-family: "Indie Flower", cursive;
+  overflow-wrap: anywhere;
+  box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff;
+}
+
+.player {
+  flex-basis: 50%;
+  opacity: 0;
+  transform: translateX(100px); // Initial position off-screen
+  border-radius: 1rem;
+  min-width: 85px;
+  overflow-wrap: anywhere;
+}
+
+.first-player {
+  background-color: $queue-list-item-background;
+  animation: rollInAnimation 0.5s ease-in-out forwards;
+  animation-delay: 0.3s; // Adjust the delay as needed
+  opacity: 0;
+  transform-origin: right;
+  border-color: #5271ff;
+  box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 82px #5271ff,
+    0 0 92px #5271ff;
+}
+
+.first-player h4 {
+  font-size: 1.5rem;
+  font-family: "Indie Flower", cursive;
+}
+
+.second-player h4 {
+  font-size: 1.5rem;
+  font-family: "Indie Flower", cursive;
+}
+
+.second-player {
+  background-color: $queue-list-item-background;
+  animation: rollInAnimation 0.5s ease-in-out forwards;
+  animation-delay: 0.6s; // Adjust the delay as needed
+  opacity: 0;
+  transform-origin: top;
+  border-color: #ba0f30;
+  box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 82px #ba0f30,
+    0 0 92px #ba0f30;
+}
+
+.queue {
+  opacity: 0;
+}
+
+@for $i from 1 through 100 {
+  .queue:nth-child(#{$i}) {
+    animation: slidein 0.66s forwards;
+    animation-delay: $animation-delay;
+  }
+
+  $animation-delay: $animation-delay + $animation-delay-increment;
+}
+
+@keyframes rollInAnimation {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg) translateZ(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateZ(0);
+  }
+}
+
+@keyframes slidein {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideout {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .player {
+    flex-basis: 50%;
+    opacity: 0;
+    transform: translateX(100px); // Initial position off-screen
+    border-radius: 1rem;
+    min-width: 85px;
+    height: 100px;
+    overflow-wrap: anywhere;
+  }
+
+  .first-player h4 {
+    font-size: 3rem;
+    font-family: "Indie Flower", cursive;
+  }
+
+  .second-player h4 {
+    font-size: 3rem;
+    font-family: "Indie Flower", cursive;
+  }
+
+  .queue-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    border: 2px solid $queue-list-item-border;
+    background-color: $queue-list-item-background;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 8px;
+    font-size: 3rem;
+    font-family: "Indie Flower", cursive;
+  }
+  .first-player {
+    border-color: #5271ff;
+  }
+
+  .second-player {
+    border-color: #ba0f30;
+  }
+}
