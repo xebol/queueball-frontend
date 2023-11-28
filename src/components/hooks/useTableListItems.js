@@ -11,7 +11,7 @@ const useTableListItem = function (props) {
       setPlayers(response.data.players);
     });
 
-    const socket = io("http://localhost:3000/");
+    const socket = io("https://queueball-api-production.up.railway.app");
     setSocket(socket);
 
     socket.on("connect", () => {
